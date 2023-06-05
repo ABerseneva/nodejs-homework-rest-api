@@ -1,6 +1,6 @@
 const express = require("express");
 const ctrl = require("../../controllers/contacts");
-const { validateBody, isValidId } = require("../../middlewares");
+const { validateBody, isValidId, validateFavourite } = require("../../middlewares");
 const { schemas } = require("../../models/contact");
 const router = express.Router();
 
@@ -22,7 +22,7 @@ router.put(
 router.patch(
   "/:contactId/favorite",
   isValidId,
-  validateBody(schemas.updateFavoriteSchema),
+  validateFavourite(schemas.updateFavoriteSchema),
   ctrl.updateFavoritContact
 );
 
